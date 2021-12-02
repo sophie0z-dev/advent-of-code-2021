@@ -28,9 +28,7 @@ export const getData = async (fileName) => {
 export const countIncreasedMeasurements = (data) => {
 //counting 
     let count = 0
-    //for loop counting the data increases
     for(var i=0; i<= data.length -1; i++){
-        //if the data number it greater than the one before it then we count one time
         if(data[i]>data[i-1]){
             count++
         }

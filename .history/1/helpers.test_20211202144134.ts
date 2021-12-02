@@ -1,4 +1,4 @@
-import { getData, countIncreasedMeasurements} from "./helpers"
+import { getData}//, countIncreasedMeasurements, getSlidingWindowSum, countIncreasedSums } from "./helpers"
 //normally you'd want to write a function that was just in charge of doing one thing at one time
 //and you just want to give it one thing at a time so to isolate problems
 //a describe block is a function or a scenario depending on what you want to test
@@ -14,22 +14,18 @@ describe('getData', () => {
         expect(data[0]).toEqual(199)
     })
 })
-//describe is the test, in describe blocks if you need data before you test runs
-//decribe block sets up and cleans up your data before running the actual test
-describe('countIncreasedMeasurements', () => {
-    //this is let because its set in the describe block if we did a const then line 24 wouldn't have access to it
-    let data
-    // jest is what runs our tests and describe and beforeEach are part of jest
-    beforeEach(async () => {
-        //here we have a promise getdata
-        data = await getData('./1/testdata.txt')
-    })
 
-    test('it should return 7', () => {
-        //expect means that when our function runs with our test dat it should equal 7 
-        expect(countIncreasedMeasurements(data)).toEqual(7)
-    })
-})
+// describe('countIncreasedMeasurements', () => {
+//     let data
+
+//     beforeEach(async () => {
+//         data = await getData('./1/testdata.txt')
+//     })
+
+//     test('it should return 7', () => {
+//         expect(countIncreasedMeasurements(data)).toEqual(7)
+//     })
+// })
 
 // describe('getSlidingWindowSum', () => {
 //     test.each([

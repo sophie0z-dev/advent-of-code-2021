@@ -14,19 +14,15 @@ describe('getData', () => {
         expect(data[0]).toEqual(199)
     })
 })
-//describe is the test, in describe blocks if you need data before you test runs
-//decribe block sets up and cleans up your data before running the actual test
+
 describe('countIncreasedMeasurements', () => {
-    //this is let because its set in the describe block if we did a const then line 24 wouldn't have access to it
     let data
-    // jest is what runs our tests and describe and beforeEach are part of jest
+
     beforeEach(async () => {
-        //here we have a promise getdata
         data = await getData('./1/testdata.txt')
     })
 
     test('it should return 7', () => {
-        //expect means that when our function runs with our test dat it should equal 7 
         expect(countIncreasedMeasurements(data)).toEqual(7)
     })
 })

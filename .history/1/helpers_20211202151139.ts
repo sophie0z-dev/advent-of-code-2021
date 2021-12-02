@@ -13,6 +13,7 @@ export const getData = async (fileName) => {
     //this one is for waiting for the promise to finish
     //fs promises gets looked up with readfile when using jest
     const rawData = await fs.promises.readFile(path,{encoding:"utf-8"})
+    console.log(rawData)
     //using the split function to slpit up our raw data into managable pieces
     //.filter goes through every item in your array and based on some condition passed into it and if that condition is 
     //true then it makes a copy of your array long with all the values that return true
@@ -22,21 +23,6 @@ export const getData = async (fileName) => {
     const data = rawData.split("\n").filter(x=>x).map(x=>parseInt(x));
 
     return data
-
-}
-//making our function
-export const countIncreasedMeasurements = (data) => {
-//counting 
-    let count = 0
-    //for loop counting the data increases
-    for(var i=0; i<= data.length -1; i++){
-        //if the data number it greater than the one before it then we count one time
-        if(data[i]>data[i-1]){
-            count++
-        }
-        
-    }
-    return count
 
 }
 
