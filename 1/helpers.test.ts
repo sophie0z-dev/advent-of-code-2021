@@ -1,4 +1,4 @@
-import { getData, countIncreasedMeasurements } from "./helpers"
+import { getData, countIncreasedMeasurements, getSlidingWindowSum, countIncreasedSums } from "./helpers"
 
 describe('getData', () => {
     test('it should return formatted data', async () => {
@@ -17,5 +17,26 @@ describe('countIncreasedMeasurements', () => {
 
     test('it should return 7', () => {
         expect(countIncreasedMeasurements(data)).toEqual(7)
+    })
+})
+
+describe('getSlidingWindowSum', () => {
+    test.each([
+        [[199, 200, 208], 607],
+        [[200, 208, 210], 618]
+    ])(`Values %p should sum to %p`, (a, expected) =>{
+        expect(getSlidingWindowSum(a)).toEqual(expected)
+    })
+})
+
+describe('countIncreasedSums', () => {
+    let data
+
+    beforeEach(async () => {
+        data = await getData('./1/testdata.txt')
+    })
+
+    test('Should return 5',() => {
+        expect(countIncreasedSums(data)).toEqual(5)
     })
 })

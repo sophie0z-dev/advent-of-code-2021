@@ -28,3 +28,17 @@ export const countIncreasedMeasurements = (data:number[]): number => {
 
     return count
 }
+
+export const getSlidingWindowSum = (values:number[]):number =>{
+  return values.reduce((acc, cur) => acc + cur, 0)
+}
+
+export const countIncreasedSums = (data:number[]):number => {
+    const sums = []
+
+    data.map((x, index) => {
+        sums.push(getSlidingWindowSum(data.slice(index, index + 3)))
+    })
+
+    return countIncreasedMeasurements(sums)
+}
