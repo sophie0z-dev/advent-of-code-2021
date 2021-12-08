@@ -1,4 +1,3 @@
-import { parse } from "@babel/core"
 import { getCO2ScrubberRating, getData, getEpsilonRate, getGammaRate, getOxygenGeneratorRating } from "./helpers"
 
 const main = async () => {
