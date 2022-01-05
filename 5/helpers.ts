@@ -65,8 +65,28 @@ export const getCoordinates = (line:Line):Point[] => {
 
     } else {
         // diagonal line
-        return []
+      return getDiagonalLine(line)
     }
+}
+
+export const getDiagonalLine = (line:Line):Point[] => {
+    const {x1, y1, x2, y2} = line
+  
+    const lengthOfLine = Math.abs(x2 - x1) + 1
+    const xDirection = x2 > x1 ? 1 : -1
+    const yDirection = y2 > y1 ? 1 : -1
+
+    const points = []
+
+    for(let i = 0; i<lengthOfLine; i++) {
+        const x = x1 + i * xDirection
+
+        const y = y1 + i * yDirection
+
+        points.push({x,y})
+    }
+    
+    return points
 }
 
 export const countPoints = (counts: Dictionary<number>):number => {
