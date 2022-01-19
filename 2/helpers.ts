@@ -1,74 +1,74 @@
-import * as fs from "fs"
+import * as fs from 'fs'
 import { PathLike } from 'graceful-fs'
 
-export const getData = async (fileName?:PathLike): Promise<String[]> => {
-    const path:PathLike = fileName || 'data.txt'
-    let rawData
+export const getData = async (fileName?: PathLike): Promise<String[]> => {
+  const path: PathLike = fileName || 'data.txt'
+  let rawData
 
-    try {
-        rawData = await fs.promises.readFile(path, {encoding:'utf-8'})
-    } catch (e) {
-        console.log('🔥', e)
+  try {
+    rawData = await fs.promises.readFile(path, { encoding: 'utf-8' })
+  } catch (e) {
+    console.log('🔥', e)
+  }
+  const formattedData = rawData.split('\n').filter((x) => x)
+
+  return formattedData
+}
+
+export const getFinalPosition = (data: String[]): number[] => {
+  let horizontal = 0
+  let depth = 0
+
+  data.map((x) => {
+    const direction = x.split(' ')[0]
+    const value = parseInt(x.split(' ')[1])
+
+    switch (direction) {
+      case 'forward':
+        horizontal += value
+        break
+
+      case 'up':
+        depth -= value
+        break
+
+      case 'down':
+        depth += value
+        break
     }
-    const formattedData = rawData.split('\n').filter(x => x)
+  })
 
-    return formattedData
+  return [horizontal, depth]
 }
 
-export const getFinalPosition = (data:String[]):number[] => {
-    let horizontal = 0
-    let depth = 0
+export const getFinalPositionPart2 = (data: String[]): number[] => {
+  let horizontal = 0
+  let depth = 0
+  let aim = 0
 
-    data.map(x => {
-        const direction = x.split(' ')[0]
-        const value = parseInt(x.split(' ')[1])
-        
-        switch(direction) {
-            case 'forward':
-                horizontal += value
-                break
-            
-            case 'up':
-                depth -= value
-                break
+  data.map((x) => {
+    const direction = x.split(' ')[0]
+    const value = parseInt(x.split(' ')[1])
 
-            case 'down':
-                depth += value
-                break
+    switch (direction) {
+      case 'forward':
+        horizontal += value
+
+        if (aim > 0) {
+          depth += aim * value
         }
-    })
-    
-    return [horizontal, depth]
-}
 
-export const getFinalPositionPart2 = (data:String[]):number[] => {
-    let horizontal = 0
-    let depth = 0
-    let aim = 0
+        break
 
-    data.map(x => {
-        const direction = x.split(' ')[0]
-        const value = parseInt(x.split(' ')[1])
-        
-        switch(direction) {
-            case 'forward':
-                horizontal += value
-               
-                if (aim > 0) {
-                    depth += aim*value
-                }
+      case 'up':
+        aim -= value
+        break
 
-                break
-            
-            case 'up':
-                aim -= value
-                break
+      case 'down':
+        aim += value
+        break
+    }
+  })
 
-            case 'down':
-                aim += value
-                break
-        }
-    })
-    
-    return [horizontal, depth]
+  return [horizontal, depth]
 }

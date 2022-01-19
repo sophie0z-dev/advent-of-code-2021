@@ -1,0 +1,16 @@
+{
+    "extends": ["vocovo", ""],
+    "rules": { "no-console": "off"},
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.ts"
+        ]
+      }
+    ]
+    // ...project-specific settings here
+  }
