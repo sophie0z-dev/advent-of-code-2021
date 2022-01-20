@@ -1,15 +1,9 @@
-import { advanceTime, getData } from './helpers'
+import { findCheapestPosition, getData } from './helpers'
 
 const main = async () => {
   const data = await getData()
-  console.log(
-    '🌼 answer part 1 = ',
-    Object.values(advanceTime(data, 80)).reduce((prevValue, curValue) => prevValue + curValue),
-  )
-  console.log(
-    '🐟 answer part 2 = ',
-    Object.values(advanceTime(data, 256)).reduce((prevValue, curValue) => prevValue + curValue),
-  )
+  console.log('🦀 answer part 1 = ', findCheapestPosition(data, true))
+  console.log('🦀🦀 answer part 2 = ', findCheapestPosition(data, false))
 }
 
 main()
